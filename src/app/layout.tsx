@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-
+import { ThemeProvider } from "next-themes";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -22,7 +22,16 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`font-sans ${inter.variable}`}>{children}</body>
+        <body className={`font-sans ${inter.variable}`}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
       </html>
     </ClerkProvider>
   );
